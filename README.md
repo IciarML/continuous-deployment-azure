@@ -37,3 +37,43 @@ Podemos borrar la aplicación con el siguiente comando:
 az container delete -n posts-app -g posts-group --yes
 ```
 
+--------------------------------------------------------------------------------------
+
+# Ejercicio Icíar
+
+```
+docker tag iciar04/posts iciar04/posts:v1
+docker push iciar04/posts:v1
+```
+
+### Crear el entorno
+
+```
+az containerapp env create `
+
+  --name posts-env `
+
+--resource-group posts-group `
+
+  --location spaincentral `
+
+--logs-destination none
+```
+
+### Crear la aplicación inicial v1
+
+```
+az containerapp create `
+
+  --name posts-app `
+  
+  --resource-group posts-group `
+  
+  --environment posts-env `
+  
+  --image iciar04/posts:v1 `
+  
+  --target-port 8080 `
+  
+  --ingress external
+```
