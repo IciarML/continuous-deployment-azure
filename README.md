@@ -4,18 +4,20 @@ Este proyecto consta de un servidor WEB sencillo para la gestión de posts (anun
 
 ## Despliegue en Azure (local)
 
-En primer lugar, nos logueamos en el cliente de Azure (el login se realizará con ayuda del navegador)
+En primer lugar, nos logueamos en el cliente de Azure (el login se realizará con ayuda del navegador).
 
 ```
 az login
 ```
 
 Creamos un grupo de recursos `posts-group`
+
 ```
 az group create --name posts-group --location westeurope
 ```
 
-Creamos nuestra aplicación lanzando un contenedor a partir de la imagen `maes95/posts:v1`. Le pondremos a la aplicación el nombre `posts-app`
+Creamos nuestra aplicación lanzando un contenedor a partir de la imagen `maes95/posts:v1`. Le pondremos a la aplicación
+el nombre `posts-app`.
 
 ```
 az containerapp up \
@@ -28,11 +30,13 @@ az containerapp up \
 ```
 
 Podemos obtener la URL de nuestra aplicación con el siguiente comando:
+
 ```
 az containerapp show -n posts-app -g posts-group --query properties.configuration.ingress.fqdn
 ```
 
 Podemos borrar la aplicación con el siguiente comando:
+
 ```
 az container delete -n posts-app -g posts-group --yes
 ```
@@ -78,4 +82,10 @@ az containerapp create `
   --ingress external
 ```
 
+### Credenciales
+
 ![img.png](img.png)
+
+### Lanzamiento del workflow
+
+![img_1.png](img_1.png)
