@@ -13,46 +13,46 @@ import es.codeurjc.board.service.PostService;
 @Controller
 public class PostController {
 
-	@Autowired
-	private PostService postService;
+    @Autowired
+    private PostService postService;
 
-	@GetMapping("/")
-	public String showPosts(Model model) {
+    @GetMapping("/")
+    public String showPosts(Model model) {
 
-		model.addAttribute("posts", postService.findAll());
+        model.addAttribute("posts", postService.findAll());
 
-		return "index";
-	}
+        return "index";
+    }
 
-	@PostMapping("/post/new")
-	public String newPost(Model model, Post post) {
+    @PostMapping("/post/new")
+    public String newPost(Model model, Post post) {
 
-		boolean saved = postService.save(post);
+        boolean saved = postService.save(post);
 
-		if (!saved) {
-			model.addAttribute("error", "Title is empty");
-			return "not_saved_post";
-		}
+        if (!saved) {
+            model.addAttribute("error", "Title is empty");
+            return "not_saved_post";
+        }
 
-		return "saved_post";
-	}
+        return "saved_post";
+    }
 
-	@GetMapping("/post/{id}")
-	public String showPost(Model model, @PathVariable long id) {
+    @GetMapping("/post/{id}")
+    public String showPost(Model model, @PathVariable long id) {
 
-		Post post = postService.findById(id);
+        Post post = postService.findById(id);
 
-		model.addAttribute("post", post);
+        model.addAttribute("post", post);
 
-		return "show_post";
-	}
+        return "show_post";
+    }
 
-	@PostMapping("/post/{id}/delete")
-	public String deletePost(Model model, @PathVariable long id) {
+    @PostMapping("/post/{id}/delete")
+    public String deletePost(Model model, @PathVariable long id) {
 
-		postService.deleteById(id);
+        postService.deleteById(id);
 
-		return "deleted_post";
-	}
-	
+        return "deleted_post";
+    }
+
 }

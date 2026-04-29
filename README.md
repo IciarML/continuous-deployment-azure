@@ -77,3 +77,5 @@ az containerapp create `
   
   --ingress external
 ```
+
+![img.png](img.png)

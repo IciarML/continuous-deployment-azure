@@ -12,37 +12,37 @@ import es.codeurjc.board.model.Post;
 @Service
 public class PostService {
 
-	private ConcurrentMap<Long, Post> posts = new ConcurrentHashMap<>();
-	private AtomicLong nextId = new AtomicLong();
+    private ConcurrentMap<Long, Post> posts = new ConcurrentHashMap<>();
+    private AtomicLong nextId = new AtomicLong();
 
-	public PostService() {
-		save(new Post("Pepe", "Vendo moto", "Barata, barata"));
-		save(new Post("Juan", "Compro coche", "Pago bien"));
-	}
+    public PostService() {
+        save(new Post("Pepe", "Vendo moto", "Barata, barata"));
+        save(new Post("Juan", "Compro coche", "Pago bien"));
+    }
 
-	public Collection<Post> findAll() {
-		return posts.values();
-	}
+    public Collection<Post> findAll() {
+        return posts.values();
+    }
 
-	public Post findById(long id) {
-		return posts.get(id);
-	}
+    public Post findById(long id) {
+        return posts.get(id);
+    }
 
-	public boolean save(Post post) {
+    public boolean save(Post post) {
 
-		if(post.getTitle().isEmpty()) return false;
+        if (post.getTitle().isEmpty()) return false;
 
-		long id = nextId.getAndIncrement();
+        long id = nextId.getAndIncrement();
 
-		post.setId(id);
+        post.setId(id);
 
-		this.posts.put(id, post);
-		
-		return true;
-	}
+        this.posts.put(id, post);
 
-	public void deleteById(long id) {
-		this.posts.remove(id);
-	}
+        return true;
+    }
+
+    public void deleteById(long id) {
+        this.posts.remove(id);
+    }
 
 }
